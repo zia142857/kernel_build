@@ -40,7 +40,8 @@ jobs:
                                   CLANG_TRIPLE=aarch64-linux-gnu- \
                                   CROSS_COMPILE=$GITHUB_WORKSPACE/aarch64-linux-android-4.9/bin/aarch64-linux-android- \
                                   CROSS_COMPILE_ARM32=$GITHUB_WORKSPACE/arm-linux-androideabi-4.9/bin/arm-linux-androideabi- "
-          cd kernel-source
+          cd kernel-source 
+          curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -s v0.9.5
           make ${args} ${{ env.KERNEL_CONFIG }}
           make -j$(($(getconf _NPROCESSORS_ONLN) * 2)) ${args}
 
